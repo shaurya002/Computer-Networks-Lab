@@ -8,7 +8,7 @@ Step 3: Create an object addy for the class InetAddress and call getLocalHost.
 Step 4: Print the HostAddress of the machaine by calling getHostAddress() method.
 Step 5: Call getHostName() method to obtained the name of the machine and store in the 
 string variable. 
-Step6- Print the Local Hast Name. 
+Step6- Print the Local Host Name. 
 Step7: Terminate the program.
 
 
