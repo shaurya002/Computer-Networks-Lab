@@ -1,0 +1,30 @@
+Aim:- Program to implement Traceroute command.
+
+Algorithm:- 
+Step 1: Import all the neccessary packages. 
+Step 2:- Create the class trace route command. 
+Step 3:- The get runtime command returns the runtine object associated with current java application. 
+Step 4: Which website do you want to see the trace enter the Command due traces. 
+Step 5: Stop the program.
+
+Program:-
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+public class trace{
+	public static void runSystemCommand(String command){
+		try{
+			Process p = Runtime.getRuntime().exec(command);
+			BufferedReader inputStream = new BufferedReader(new InputStreamReader(p.getInputStream()));
+			String s = "";
+			while ((s = inputStream.readLine()) != null){
+				System.out.println(s);
+			}
+		}catch (Exception e){
+		}
+	}
+	public static void main(String[] args){ 
+		String ip = "www.youtube.com";
+		runSystemCommand("tracert " + ip);
+	}
+}

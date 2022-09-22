@@ -1,0 +1,34 @@
+Aim: Program to execute ping command.
+
+Algorithm: 
+Step 1: Import Neccessary packages. 
+Step 2: Initized class ping. 
+Step 3: Get Runtime exec command returns runtime object. 
+Step 4: Buffered Reader function reader each byte line to line. 
+Step 5: Print stark trace function used to handle exception and errors.
+Step 6:- Enter the required website for ping. 
+Step 7:- Stop the program.
+
+Program: 
+
+import java.io.*; 
+public class ping1 { 
+	public static void runSystemCommand(String Command) { 
+		try{ 
+			Process p=Runtime.getRuntime().exec(Command); 
+			BufferedReader InputStream=new BufferedReader(new InputStreamReader(p.getInputStream())); 
+			String s="vvv"; 
+			while((s=InputStream.readLine())!=null) { 
+				System.out.println(s); 
+			} 
+		} catch(Exception e) { 
+			e.printStackTrace(); 
+		} 
+	} 
+	public static void main(String[]args) { 
+		String Ip="localhost";
+		runSystemCommand("ping " +Ip); 
+		java.util.Date date=new java.util.Date(); 
+		System.out.println(date); 
+	} 
+}

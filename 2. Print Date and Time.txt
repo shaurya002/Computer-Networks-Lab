@@ -1,0 +1,66 @@
+Aim: Program to print date and time in client by server.
+
+Alogorithm: 
+SERVER 
+STEP1: Create instances for socket and ServerSocket class.
+STEP2: Use the port 8020 for TCP.
+STEP3: Make the PrintStream object connect to the OuputStream 
+using Socket.
+STEP4: Create an instance of the Date class and write it into the Socket.
+STEP5: Get the IP address of the client using the socket and getInetAddress().
+
+
+CLIENT 
+STEP1: Create instances for socket class with the port number 8020.
+STEP2: Create an object of DataInputStream and make it to get data from server through the socket.
+STEP3: Read the Date object.STEP4: Print the obtained date.
+
+
+Program:
+server:
+
+import java.net.*;
+import java.io.*;
+import java.util.*;
+public class server2 extends Thread{
+	public static void main(String[] args) throws Exception{
+		ServerSocket sSocket = new ServerSocket(1000);
+		Socket cSocket=sSocket.accept();
+		BufferedReader br=new BufferedReader(new
+		InputStreamReader(cSocket.getInputStream()));
+		PrintWriter out=new PrintWriter(cSocket.getOutputStream(),true);
+		Date d = new Date();
+		try{
+			while(true){
+				d= new Date();
+				out.println("Time at server;" +d.toString());
+				System.out.println(br.readLine());
+				sleep(1000);
+			}
+		}catch(IOException e){
+			System.out.println("----Client has Closed-----");
+		}
+	}
+}
+
+
+Client:
+
+import java.net.*;
+import java.io.*;
+public class client2{
+	public static void main (String[] arg) throws Exception{
+		try{
+			Socket s=new Socket(InetAddress.getLocalHost(),1000);
+			BufferedReader br = new BufferedReader(new
+			InputStreamReader(s.getInputStream()));
+			String input;
+			PrintWriter out=new PrintWriter(s.getOutputStream(),true);
+			while((input=br.readLine())!=null){
+				System.out.println(input);
+				out.println("Date and Time Received-----------client Acknowledge------");
+			}
+		}catch(Exception e){
+		}
+	}
+}
